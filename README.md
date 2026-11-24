@@ -2,8 +2,10 @@
 
 A skill for consolidating coupled pull requests from the current repository. It detects the
 remote's primary branch, reviews each original PR and the aggregate, and uses the project's own
-preparation and verification commands. Every source receives an individual head-specific review
-before authorized replacement after merge verification.
+preparation and verification commands. The batch is proven once as a validation PR; by default the
+original PRs are then delivered themselves, each with the fixes that belong to it, its own CI and
+review, queued in conflict-free waves. Replacement of the sources by the merged batch remains
+available when sources cannot receive commits.
 
 ## Usage
 

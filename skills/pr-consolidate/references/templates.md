@@ -5,6 +5,8 @@ the UTF-8 body to a file; the publisher adds its own PR/head marker. Never imply
 
 ## Batch description
 
+In delivery mode, prefix the title with `[Validation — do not merge]`.
+
 ```markdown
 ## Why
 
@@ -28,10 +30,14 @@ These PRs share <contracts or integration surfaces>:
 - Relevant negative witnesses: <fault, oracle, rejection and restored acceptance>.
 - Proof assessment where applicable: <actual verdict and limits; no invented receipt>.
 
-## Follow-ups and replacement
+## Follow-ups and delivery
 
 <Finding, originating PR, owner decision and impact on the batch.>
-The skill does not request source-branch deletion. GitHub repository settings may delete the
+Delivery mode: this PR validates the aggregate and will not be merged. Each source receives the fixes
+that target it, passes its own CI and is queued by waves: <wave 1: #a, #b; wave 2: #c (stacked on #a)>.
+This PR is closed once the last source is merged and the primary branch matches its tree.
+
+Replacement mode: the skill does not request source-branch deletion. GitHub repository settings may delete the
 merged batch branch independently. After merge verification, the authorized replacement operation will
 close <source PRs>. Their reviews and separate replacement notices remain visible.
 ```
@@ -51,6 +57,8 @@ Reviewed for consolidation into <batch PR URL or proposed batch identity>.
 within this scope>.
 
 **Integration** — <retained behavior, fixes in the batch and their candidate SHA>.
+Delivery mode: <fixes carried to this branch, each `cherry-pick -x` of its batch commit, new head
+`<full-sha>`; wave and merge order>.
 <Outstanding source-specific decisions and follow-ups.>
 
 **Evidence** — <checks actually executed on this source, supplied evidence, environment and limits>.
